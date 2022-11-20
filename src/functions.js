@@ -61,3 +61,7 @@ export const getDateTimeForPicker = (date = new Date()) => {
   const dateIso = date.toISOString()
   return dateIso.substring(0, dateIso.length - 5)
 }
+
+export function randomId() {
+  return Math.random() * 999
+}

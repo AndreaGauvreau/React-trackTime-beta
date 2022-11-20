@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {diffTime, groupBy} from '../functions'
 import './table.css'
-export default function TrackTable({allTracker}) {
+
+export default function TrackTable({allTracker, setSelected, selectedID}) {
   const rows = []
   let lastCategory = ''
 
@@ -12,7 +13,14 @@ export default function TrackTable({allTracker}) {
       if (tracker.category !== lastCategory) {
         rows.push(<TrackerCategory key={category} category={category} />)
       }
-      rows.push(<TrackRow key={tracker.id} allTracker={tracker} />)
+      rows.push(
+        <TrackRow
+          key={tracker.id}
+          allTracker={tracker}
+          setSelected={setSelected}
+          selectedID={selectedID}
+        />,
+      )
       lastCategory = tracker.category
     })
   })
@@ -34,7 +42,7 @@ export default function TrackTable({allTracker}) {
   )
 }
 
-function TrackRow({allTracker}) {
+function TrackRow({allTracker, setSelected, selectedID}) {
   const [duree, setDuree] = useState(
     diffTime(allTracker?.starttime, allTracker?.endtime),
   )
@@ -49,8 +57,19 @@ function TrackRow({allTracker}) {
     }
   }, [allTracker?.starttime, allTracker?.endtime, duree])
 
+  const handleClick = () => {
+    setSelected(allTracker)
+  }
+
+  const selected = allTracker.id === selectedID ? 'selected' : ''
+
   return (
-    <tr className="table-row" key={allTracker.id}>
+    <tr
+      className="table-row"
+      id={selected}
+      key={allTracker.id}
+      onClick={handleClick}
+    >
       <td>{allTracker.name}</td>
       <td>{allTracker.starttime}</td>
       <td>{allTracker.endtime}</td>

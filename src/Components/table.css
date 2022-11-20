@@ -6,3 +6,10 @@
   background: #398ffc;
   color: white;
 }
+
+.table-row:hover {
+  background: #398ffc80;
+}
+#selected {
+  background: orange;
+}
