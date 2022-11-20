@@ -20,9 +20,22 @@ export default function TrackApp() {
   const selectedID = selected?.id
 
   const onAddTracker = tracker => {
+    if (tracker.name === '') {
+      return alert('veuillez ajouter un nom')
+    }
+    if (tracker.starttime === '') {
+      return alert('veuillez ajouter une date de début')
+    }
+    if (tracker.category === '') {
+      return alert('veuillez ajouter une categorie')
+    }
     setAllTracker([...allTracker, tracker])
   }
   const onDeleteTracker = tracker => {
+    if (tracker.id === '') {
+      alert('veuillez selectionner un tracker')
+      return
+    }
     setAllTracker(allTracker.filter(item => item.id !== tracker.id))
   }
   const onUpdateTracker = tracker => {
