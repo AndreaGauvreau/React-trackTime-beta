@@ -5,7 +5,7 @@ const TRACKERS = [
     category: 'Sport',
     starttime: '2021-08-01T16:40:01',
     endtime: '2021-08-01T16:45:52',
-    name: 'musculation',
+    name: 'Entrainement sportif',
   },
   {
     id: '2',
@@ -41,6 +41,34 @@ const TRACKERS = [
     starttime: '2021-08-01T16:40:01',
     endtime: '2021-08-01T17:40:01',
     name: 'coding session ',
+  },
+  {
+    id: '7',
+    category: 'Code',
+    starttime: '2021-08-01T16:40:01',
+    endtime: '2021-08-01T17:40:01',
+    name: 'coding session ',
+  },
+  {
+    id: '8',
+    category: 'Code',
+    starttime: '2021-08-01T16:40:01',
+    endtime: '2021-08-01T17:40:01',
+    name: 'coding session ',
+  },
+  {
+    id: '9',
+    category: 'Code',
+    starttime: '2021-08-01T16:40:01',
+    endtime: '2021-08-01T17:40:01',
+    name: 'Tracker de temps ',
+  },
+  {
+    id: '10',
+    category: 'Sport',
+    starttime: '2021-08-01T16:40:01',
+    endtime: '2021-08-01T17:40:01',
+    name: 'Tennis entre amis ',
   },
 ]
 

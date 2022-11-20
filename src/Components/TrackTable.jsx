@@ -1,5 +1,5 @@
-import React from 'react'
-import {groupBy} from '../functions'
+import React, {useEffect, useState} from 'react'
+import {diffTime, groupBy} from '../functions'
 export default function TrackTable({allTracker}) {
   const rows = []
   let lastCategory = ''
@@ -34,12 +34,26 @@ export default function TrackTable({allTracker}) {
 }
 
 function TrackRow({allTracker}) {
+  const [duree, setDuree] = useState(
+    diffTime(allTracker?.starttime, allTracker?.endtime),
+  )
+
+  useEffect(() => {
+    const refresh = () => {
+      setDuree(diffTime(allTracker?.starttime, allTracker?.endtime))
+    }
+    const timer = setTimeout(() => refresh(), 1000)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [allTracker?.starttime, allTracker?.endtime, duree])
+
   return (
     <tr key={allTracker.id}>
       <td>{allTracker.name}</td>
       <td>{allTracker.starttime}</td>
       <td>{allTracker.endtime}</td>
-      <td>durée</td>
+      <td>{duree}</td>
     </tr>
   )
 }
