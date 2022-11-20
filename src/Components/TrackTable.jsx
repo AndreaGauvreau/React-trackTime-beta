@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {diffTime, groupBy} from '../functions'
+import './table.css'
 export default function TrackTable({allTracker}) {
   const rows = []
   let lastCategory = ''
@@ -49,7 +50,7 @@ function TrackRow({allTracker}) {
   }, [allTracker?.starttime, allTracker?.endtime, duree])
 
   return (
-    <tr key={allTracker.id}>
+    <tr className="table-row" key={allTracker.id}>
       <td>{allTracker.name}</td>
       <td>{allTracker.starttime}</td>
       <td>{allTracker.endtime}</td>
@@ -61,7 +62,9 @@ function TrackRow({allTracker}) {
 function TrackerCategory({category}) {
   return (
     <tr>
-      <th colSpan="4">{category}</th>
+      <th className="table-category" colSpan="4">
+        {category}
+      </th>
     </tr>
   )
 }
