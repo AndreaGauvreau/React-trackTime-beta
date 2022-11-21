@@ -1,4 +1,5 @@
 import React from 'react'
+import {useEffect} from 'react'
 import {useState} from 'react'
 import db from '../data'
 import FilterTracker from './FilterTracker'
@@ -44,6 +45,16 @@ export default function TrackApp() {
     )
     setAllTracker(updatedList)
   }
+
+  useEffect(() => {
+    const data = localStorage.getItem('LocalTrackers')
+    if (data) setAllTracker(JSON.parse(data))
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('LocalTrackers', JSON.stringify(allTracker))
+    console.log('add data', allTracker)
+  }, [allTracker])
 
   return (
     <div>
