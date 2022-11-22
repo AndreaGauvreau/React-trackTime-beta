@@ -1,4 +1,4 @@
-.table-category {
+/*.table-category {
   background: #398ffc50;
 }
 
@@ -12,4 +12,20 @@
 }
 #selected {
   background: orange;
+}
+*/
+
+#tableDiv {
+  min-height: 60vh;
+  max-height: 60vh;
+  overflow-y: scroll;
+  min-width: 500px;
+}
+
+tbody {
+  font-size: 13px;
+}
+
+td {
+  padding: 5px;
 }

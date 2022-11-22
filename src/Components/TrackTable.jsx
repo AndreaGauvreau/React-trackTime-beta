@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react'
-import {diffTime, groupBy} from '../functions'
+import {useContext} from 'react'
+import {convertTime, diffTime, groupBy} from '../functions'
 import './table.css'
+import {themes} from './ThemesContext'
+import {ThemesContext} from './TrackApp'
 
 export default function TrackTable({allTracker, setSelected, selectedID}) {
   const rows = []
   let lastCategory = ''
-
+  const theme = useContext(ThemesContext)
   const trackerParCategory = groupBy(allTracker, 'category')
 
   Object.keys(trackerParCategory).forEach(category => {
@@ -26,9 +29,16 @@ export default function TrackTable({allTracker, setSelected, selectedID}) {
   })
 
   return (
-    <div>
+    <div
+      id="tableDiv"
+      style={{
+        background: theme.superposition1,
+        padding: '20px',
+        borderRadius: '10px',
+      }}
+    >
       <table>
-        <thead>
+        <thead style={{background: theme.background2, color: theme.color2}}>
           <tr>
             <th>Nom du tracker</th>
             <th>Début</th>
@@ -36,7 +46,7 @@ export default function TrackTable({allTracker, setSelected, selectedID}) {
             <th>Durée</th>
           </tr>
         </thead>
-        <tbody>{rows}</tbody>
+        <tbody style={{background: ''}}>{rows}</tbody>
       </table>
     </div>
   )
@@ -62,19 +72,25 @@ function TrackRow({allTracker, setSelected, selectedID}) {
   }
 
   const selected = allTracker.id === selectedID ? 'selected' : ''
+  const theme = useContext(ThemesContext)
 
   return (
-    <tr
-      className="table-row"
-      id={selected}
-      key={allTracker.id}
-      onClick={handleClick}
-    >
-      <td>{allTracker.name}</td>
-      <td>{allTracker.starttime}</td>
-      <td>{allTracker.endtime}</td>
-      <td>{duree}</td>
-    </tr>
+    <>
+      <tr
+        style={{
+          background: selected ? theme.color3 : theme.superposition1,
+        }}
+        className="table-row"
+        id={selected}
+        key={allTracker.id}
+        onClick={handleClick}
+      >
+        <td>{allTracker.name}</td>
+        <td>{convertTime(allTracker.starttime)}</td>
+        <td>{convertTime(allTracker.endtime)}</td>
+        <td>{duree}</td>
+      </tr>
+    </>
   )
 }
 

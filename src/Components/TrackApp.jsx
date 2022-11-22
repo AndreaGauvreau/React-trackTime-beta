@@ -7,13 +7,16 @@ import {TrackerForm} from './TrackerForm'
 import TrackTable from './TrackTable'
 import {themes} from './ThemesContext'
 import {createContext} from 'react'
+import './trackerApp.css'
+import Switch from 'react-switch'
+
+export const ThemesContext = createContext(themes)
 
 export default function TrackApp() {
   const [allTracker, setAllTracker] = useState(db)
   const [filter, SetFilter] = useState('')
   const [selected, setSelected] = useState()
 
-  const ThemesContext = createContext(themes)
   const [darkMode, setDarkMode] = useState(true)
   const themeMode = darkMode ? themes.light : themes.dark
 
@@ -63,23 +66,37 @@ export default function TrackApp() {
   }, [allTracker])
 
   return (
-    <div style={{color: themeMode.color1, background: themeMode.background1}}>
+    <div
+      id="mainApp"
+      style={{
+        color: themeMode.color1,
+        background: themeMode.background1,
+      }}
+    >
       <ThemesContext.Provider value={themeMode}>
-        <input type="checkbox" onChange={() => setDarkMode(!darkMode)} />
-        il y a {allTracker.length}
-        <FilterTracker onTextChange={onTextChange} />
-        <TrackerForm
-          selected={selected}
-          onAddTracker={onAddTracker}
-          onDeleteTracker={onDeleteTracker}
-          onUpdateTracker={onUpdateTracker}
-        />
-        <TrackTable
-          allTracker={allTracker}
-          setSelected={setSelected}
-          selectedID={selectedID}
-          selected={selected}
-        />
+        <section>
+          <div>
+            <Switch
+              checked={darkMode}
+              onChange={() => setDarkMode(!darkMode)}
+              checkedIcon=""
+              uncheckedIcon=""
+              onHandleColor={themeMode.color1}
+              offColor="#398ffc"
+              onColor="#9b9b9b"
+            />
+            <TrackerForm selected={selected} onAddTracker={onAddTracker} />
+          </div>
+          <div>
+            <FilterTracker onTextChange={onTextChange} />
+            <TrackTable
+              allTracker={allTracker}
+              setSelected={setSelected}
+              selectedID={selectedID}
+              selected={selected}
+            />
+          </div>
+        </section>
       </ThemesContext.Provider>
     </div>
   )

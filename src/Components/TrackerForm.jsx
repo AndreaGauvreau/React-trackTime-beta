@@ -1,5 +1,8 @@
-import React, {useReducer, useState} from 'react'
+import React, {useContext, useReducer, useState} from 'react'
 import {randomId, getDateTimeForPicker} from '../functions'
+import {themes} from './ThemesContext'
+import './trackerForm.css'
+import {ThemesContext} from './TrackApp'
 
 const newTracker = () => ({
   id: randomId(),
@@ -148,60 +151,86 @@ export function TrackerForm({
   }, [selected])
 
   const disabled = state.tracker.id === '' ? true : false
-
+  const theme = useContext(ThemesContext)
   return (
-    <div>
+    <div id="formDiv" style={{background: theme.superposition1}}>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Gestion des Trackers</legend>
           <input
+            style={{background: theme.background1, color: theme.color1}}
             type="text"
             value={state.tracker.name}
             onChange={handleNameChange}
             disabled={disabled}
           />
           <input
+            style={{background: theme.background1, color: theme.color1}}
             type="datetime-local"
             value={state.tracker.starttime}
             onChange={handleStartTimeChange}
             disabled={disabled}
           />
           <input
+            style={{background: theme.background1, color: theme.color1}}
             type="datetime-local"
             value={state.tracker.endtime}
             onChange={handleEndTimeChange}
             disabled={disabled}
           />
           <input
+            style={{background: theme.background1, color: theme.color1}}
             type="text"
             value={state.tracker.category}
             onChange={handleCategoryChange}
             disabled={disabled}
           />
         </fieldset>
-        <input
-          type="button"
-          value="mettre à jour"
-          onClick={handleUpdate}
-          disabled={state.activeButtons.btnSave}
-        />
-        <input
-          type="button"
-          value="supprimer"
-          onClick={handleDelete}
-          disabled={state.activeButtons.btnDel}
-        />
-        <input
-          type="submit"
-          value="ajouter"
-          disabled={state.activeButtons.btnUp}
-        />
-        <input
-          type="button"
-          value="nouveau"
-          onClick={handleCreate}
-          disabled={state.activeButtons.btnAdd}
-        />
+        <div id="actionButtonDiv" style={{background: theme.superposition2}}>
+          <input
+            style={{
+              background: state.activeButtons.btnSave ? '' : theme.actionBtn2,
+              color: theme.color2,
+              boxShadow: state.activeButtons.btnSave ? '' : theme.shadow2,
+            }}
+            type="button"
+            value="mettre à jour"
+            onClick={handleUpdate}
+            disabled={state.activeButtons.btnSave}
+          />
+          <input
+            style={{
+              background: state.activeButtons.btnDel ? '' : theme.actionBtn2,
+              color: theme.color2,
+              boxShadow: state.activeButtons.btnDel ? '' : theme.shadow2,
+            }}
+            type="button"
+            value="supprimer"
+            onClick={handleDelete}
+            disabled={state.activeButtons.btnDel}
+          />
+          <input
+            style={{
+              background: state.activeButtons.btnUp ? '' : theme.actionBtn2,
+              color: theme.color2,
+              boxShadow: state.activeButtons.btnUp ? '' : theme.shadow2,
+            }}
+            type="submit"
+            value="ajouter"
+            disabled={state.activeButtons.btnUp}
+          />
+          <input
+            style={{
+              background: state.activeButtons.btnAdd ? '' : theme.actionBtn2,
+              color: theme.color2,
+              boxShadow: state.activeButtons.btnAdd ? '' : theme.shadow2,
+            }}
+            type="button"
+            value="nouveau"
+            onClick={handleCreate}
+            disabled={state.activeButtons.btnAdd}
+          />
+        </div>
       </form>
     </div>
   )

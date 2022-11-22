@@ -65,3 +65,12 @@ export const getDateTimeForPicker = (date = new Date()) => {
 export function randomId() {
   return Math.random() * 999
 }
+
+export const convertTime = time => {
+  return new Date(time).toLocaleDateString('fr-fr', {
+    month: 'long',
+    day: 'numeric',
+    minute: 'numeric',
+    hour: 'numeric',
+  })
+}

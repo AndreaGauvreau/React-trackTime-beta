@@ -1,0 +1,34 @@
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: none;
+}
+input {
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+form {
+  min-height: 70vh;
+  min-width: 550px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#formDiv {
+  border-radius: 20px 20px 0px 0px;
+}
+
+#actionButtonDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: auto;
+  border-radius: 10px;
+  width: 400px;
+}
