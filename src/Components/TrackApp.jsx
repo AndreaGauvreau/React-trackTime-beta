@@ -1,15 +1,21 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {useEffect} from 'react'
 import {useState} from 'react'
 import db from '../data'
 import FilterTracker from './FilterTracker'
 import {TrackerForm} from './TrackerForm'
 import TrackTable from './TrackTable'
+import {themes} from './ThemesContext'
+import {createContext} from 'react'
 
 export default function TrackApp() {
   const [allTracker, setAllTracker] = useState(db)
   const [filter, SetFilter] = useState('')
   const [selected, setSelected] = useState()
+
+  const ThemesContext = createContext(themes)
+  const [darkMode, setDarkMode] = useState(true)
+  const themeMode = darkMode ? themes.light : themes.dark
 
   const onTextChange = e => {
     SetFilter(e.target.value)
@@ -57,21 +63,24 @@ export default function TrackApp() {
   }, [allTracker])
 
   return (
-    <div>
-      il y a {allTracker.length}
-      <FilterTracker onTextChange={onTextChange} />
-      <TrackerForm
-        selected={selected}
-        onAddTracker={onAddTracker}
-        onDeleteTracker={onDeleteTracker}
-        onUpdateTracker={onUpdateTracker}
-      />
-      <TrackTable
-        allTracker={allTracker}
-        setSelected={setSelected}
-        selectedID={selectedID}
-        selected={selected}
-      />
+    <div style={{color: themeMode.color1, background: themeMode.background1}}>
+      <ThemesContext.Provider value={themeMode}>
+        <input type="checkbox" onChange={() => setDarkMode(!darkMode)} />
+        il y a {allTracker.length}
+        <FilterTracker onTextChange={onTextChange} />
+        <TrackerForm
+          selected={selected}
+          onAddTracker={onAddTracker}
+          onDeleteTracker={onDeleteTracker}
+          onUpdateTracker={onUpdateTracker}
+        />
+        <TrackTable
+          allTracker={allTracker}
+          setSelected={setSelected}
+          selectedID={selectedID}
+          selected={selected}
+        />
+      </ThemesContext.Provider>
     </div>
   )
 }
