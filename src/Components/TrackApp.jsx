@@ -41,6 +41,7 @@ export default function TrackApp() {
     }
     setAllTracker([...allTracker, tracker])
   }
+
   const onDeleteTracker = tracker => {
     if (tracker.id === '') {
       alert('veuillez selectionner un tracker')
@@ -85,7 +86,12 @@ export default function TrackApp() {
               offColor="#398ffc"
               onColor="#9b9b9b"
             />
-            <TrackerForm selected={selected} onAddTracker={onAddTracker} />
+            <TrackerForm
+              selected={selected}
+              onAddTracker={onAddTracker}
+              onUpdateTracker={onUpdateTracker}
+              onDeleteTracker={onDeleteTracker}
+            />
           </div>
           <div>
             <FilterTracker onTextChange={onTextChange} />
