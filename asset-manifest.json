@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/React-trackTime-beta/static/css/main.c108a40e.css",
-    "main.js": "/React-trackTime-beta/static/js/main.f9e70419.js",
+    "main.js": "/React-trackTime-beta/static/js/main.0c3fbd03.js",
     "static/js/787.43d978fe.chunk.js": "/React-trackTime-beta/static/js/787.43d978fe.chunk.js",
     "index.html": "/React-trackTime-beta/index.html",
     "main.c108a40e.css.map": "/React-trackTime-beta/static/css/main.c108a40e.css.map",
-    "main.f9e70419.js.map": "/React-trackTime-beta/static/js/main.f9e70419.js.map",
+    "main.0c3fbd03.js.map": "/React-trackTime-beta/static/js/main.0c3fbd03.js.map",
     "787.43d978fe.chunk.js.map": "/React-trackTime-beta/static/js/787.43d978fe.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c108a40e.css",
-    "static/js/main.f9e70419.js"
+    "static/js/main.0c3fbd03.js"
   ]
 }
